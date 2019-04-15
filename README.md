@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://lomrlo.me/up/ecc.jpg">
+<img src="https://lomrlo.me/up/ecc-a.jpg">
 </p>
 
 
