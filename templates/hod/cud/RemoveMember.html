@@ -1,0 +1,17 @@
+<form action="{% url 'RemoveMember' account.pk %}" method="post">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Remove Member</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to remove member ( 
+            <b>{{ account.Ins_ID }}</b>
+             ) ?</p>
+        <p class="text-warning"><small>This action can be undone from add member section.</small></p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-danger" value="Remove">
+    </div>
+</form>

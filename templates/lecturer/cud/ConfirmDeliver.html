@@ -1,0 +1,30 @@
+{% if submission.S_Status %}
+<form action="{% url 'ConfirmDeliver' submission.pk %}" method="post">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Confirm Deliver</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to confirm delivering for exam (
+            <b>{{ submission.ID.CCourse.CoName }}</b>
+            ) ?</p>
+        <p class="text-warning"><small>This action cannot be undone.</small></p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-info" value="Confirm">
+    </div>
+</form>
+{% else %}
+    <div class="modal-header">
+        <h4 class="modal-title">You can not confirm delivering</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p>You can not confirm an exam that has not been submitted.</p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+    </div>
+{% endif %}

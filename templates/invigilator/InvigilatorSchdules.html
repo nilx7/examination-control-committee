@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block pageName %}Invigilator Schdules{% endblock pageName %}
+
+{% block style %}{% endblock style %}
+
+
+{% block content %}
+<div id="printableArea" class="agenda">
+    <div class="table-responsive">
+        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Date</th>
+                    <th>Period</th>
+                    <th>Department</th>
+                    <th>No. of students</th>
+                    <th>Exam in</th>
+                    <th>Instractors of the course</th>
+                    <th>Sections</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for exam in exams %}
+                <tr>
+                    <td>{{ exam.section_set.first.CCourse.CoName }}</td>
+                    <td>{{ exam.Date|date:"SHORT_DATE_FORMAT" }}</td>
+                    <td>{{ exam.get_Period_display }}</td>
+                    <td>{{ exam.section_set.first.CCourse.Dcode }}</td>
+                    <td>
+                    {% for section in exam.section_set.all %}
+                        <small>{{ section.Name }}</small>: {{ section.takes_set.count }}<br />
+                    {% endfor %}
+                    </td>
+                    <td>
+                        <small>Building: </small>{{ exam.has_set.first.Room.BLDG|linebreaks }}
+                        <small>Room: </small>{{ exam.has_set.first.Room.Room|linebreaks }}
+                    </td>
+                    <td>
+                {% for section in exam.section_set.all %}
+                    <small>{{ section.Name }} : {{ section.Ins_ID }}</small><br />
+                {% endfor %}
+                    </td>
+                    <td>
+                    {% for section in exam.section_set.all %}
+                        {{ section.Name }}<br />
+                    {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<button type="button" onclick="printDiv('printableArea')" class="btn btn-info fas fa-print"></button><br /><br />
+
+        <a href="{% url 'InvigilatorHome' %}" style="color:dimgray;text-decoration:none;">
+            <button href="#" type="button" class="btn btn-indigo btn-lg btn-block mb-3">Back to Home page</button>
+        </a>
+
+{% endblock %}

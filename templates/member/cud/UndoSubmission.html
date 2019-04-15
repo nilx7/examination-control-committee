@@ -1,0 +1,32 @@
+{% if not submitted.D_Status %}
+<form action="{% url 'UndoSubmission' submitted.pk %}" method="post">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Undo Submission</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to undo submission for exam (
+            <b>{{ submitted.ID.CCourse.CoName }}</b>
+            ) ?</p>
+        <p class="text-warning"><small>This action can be undone from exam submission page.</small></p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-info" value="Confirm">
+    </div>
+</form>
+{% else %}
+
+    <div class="modal-header">
+        <h4 class="modal-title">You can not undo (<b>{{ submitted.ID.CCourse.CoName  }}</b>)</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p>The exam papers were received by the instructor.</p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+    </div>
+
+{% endif %}

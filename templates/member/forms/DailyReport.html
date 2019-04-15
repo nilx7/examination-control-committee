@@ -1,0 +1,117 @@
+{% extends 'base_form.html' %}
+
+{% block content %}
+<h2 class="text-center">التقرير اليومي للجنة الكنترول على الاختبارات النهائية</h2>
+<!--<h3 class="text-center">الفصل الدراسي الثاني 1439 -1440 هـ</h3>-->
+<br />
+<div class="text-right" style="direction: rtl;">
+    <h6>التاريخ : {{ today_date|date:"SHORT_DATE_FORMAT"  }}</h6>
+    <h6>أعضاء لجنة الكنترول :</h6>
+    <ul>
+        {% for member in members %}
+        <li>{{ member.Ins_ID }}</li>
+        {% endfor %}
+    </ul>
+</div>
+<br />
+<div class="agenda">
+    <div class="table-responsive">
+
+        <table width="100%" id="datatable" class="table table-striped table-bordered" cellspacing="0">
+            <thead>
+                <tr class="text-center">
+                    <th>اسماء المقررات</th>
+                    <th>المراقبون</th>
+                    <th>القاعة</th>
+                    <th>الفترة</th>
+                </tr>
+            </thead>
+
+            {% for key, values in Periods %}
+            <tbody>
+                <tr class="text-center">
+                    <td>
+                        {% for exam in exams %}
+                            {% if exam.Period == key %}
+                                {% for section in exam.section_set.all %}
+                                    ({{ section.Name }}) - {{ section.CCourse.CoName }} <br />
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+
+                    <td>
+                        {% for exam in exams %}
+                            {% if exam.Period == key %}
+                                {% for inv in exam.control_set.all %}
+                                    {{ inv.Ins_ID }} <br />
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+
+                    </td>
+
+                    <td>
+                        {% for exam in exams %}
+                            {% if exam.Period == key %}
+                                {% for has in exam.has_set.all %}
+                                    {{ has.Room.Room }}<br />
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+
+                    <td>{{key}}</td>
+            </tbody>
+            {% endfor %}
+        </table>
+        <h6 class="text-right" style="direction: rtl;">ملاحظات:</h6>
+        {% if Notes %}
+        <p class="text-right">{{ Notes }}</p>
+        {% else %}
+        <p class="text-right">لايوجد ملاحظات</p>
+        {% endif %}
+
+        <br />
+        {% if Absents %}
+        <h6 class="text-right">بيان بأسماء أعضاء هيئة التدريس و المحاضرين المتغيبين عن المراقبات</h6>
+
+        <table width="100%" id="datatable" class="table table-striped table-bordered" cellspacing="0">
+            <thead>
+                <tr class="text-center" style="background-color:#4AACC5;">
+                    <th>الجوال</th>
+                    <th>بريد الكتروني</th>
+                    <th>الاسم</th>
+                    <th>م</th>
+                </tr>
+            </thead>
+            {% for absent in Absents %}
+            <tbody>
+                <tr class="text-center">
+
+                    <td>
+                        {% for inst_phone in inst_phones %}
+                        {% if inst_phone.Ins_ID.Ins_ID == absent.Ins_ID %}
+                        {{ inst_phone.Phone_number }}<br />
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ absent.Email }}</td>
+                    <td>{{ absent.Fname }} {{ absent.Minit }} {{ absent.Lname }}</td>
+                    <td>{{ absent.Ins_ID }}</td>
+
+            </tbody>
+            {% endfor %}
+        </table>
+        <h6 class="text-right" style="direction: rtl;">ملاحظات:</h6>
+        {% if AbsentsNotes %}
+                <p class="text-right">{{ AbsentsNotes }}</p>
+            {% else %}
+                <p class="text-right">لايوجد ملاحظات</p>
+        {% endif %}
+
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

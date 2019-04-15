@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block pageName %}Confirm Delivering{% endblock pageName %}
+
+{% block style %}{% endblock style %}
+
+
+{% block content %}
+{% if submitted.paginator.count > 0 %}
+<div class="agenda">
+    <div class="table-responsive">
+        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Exam Date</th>
+                    <th>Confirmed submission by</th>
+                    <th>Submission status</th>
+                    <th>Confirm delivering</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for submission in submitted %}
+                <tr>
+                    <td>{{ submission.ID.CCourse.CoName }}</td>
+                    <td>{{ submission.ID.E_ID.Date }}</td>
+                    <td>
+                        {% if submission.S_Status %}
+                        {{ submission.Member_ID }}
+                        {% else %}
+                        Not confirmed
+                        {% endif %}
+                    </td>
+
+                    <td class="text-center">
+                        {% if submission.S_Status %}
+                        <i class="material-icons green">check_circle_outline</i>
+                        {% else %}
+                        <i class="material-icons red">highlight_off</i>
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                        {% if submission.D_Status %}
+                        <i class="material-icons green">check_circle_outline</i>
+                        {% else %}
+                        <a href="{% url 'ConfirmDeliver' submission.pk %}"
+                            data-target="#ConfirmDeliverModal{{ submission.pk }}" class="view" data-toggle="modal"><i
+                                class="material-icons orange" data-toggle="tooltip" title="Confirm">check_circle</i></a>
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                        <a href="{% url 'RemoveSubmission' submission.pk %}"
+                            data-target="#RemoveSubmissionModal{{ submission.pk }}" class="view" data-toggle="modal"><i
+                                class="material-icons red" data-toggle="tooltip" title="Remove">delete_forever</i></a>
+                    </td>
+                </tr>
+
+                <div id="ConfirmDeliverModal{{ submission.pk }}" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="RemoveSubmissionModal{{ submission.pk }}" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<nav>
+    <ul class="pagination justify-content-end">
+        {% if submitted.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ submitted.previous_page_number }}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Previous</a>
+        </li>
+        {% endif %}
+        {% for num in submitted.paginator.page_range %}
+        {% if submitted.number == num %}
+        <li class="page-item disabled"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+        <li class="page-item">
+            {% if submitted.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ submitted.next_page_number }}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% else %}
+<div class="col-lg-12">
+    <div class="text-center">
+        <h3><span class="highlight">There are no exams to confirm it</span></h3>
+    </div>
+</div>
+{% endif %}
+<a href="{% url 'SubmitExam' %}" style="color:white;text-decoration:none;">
+    <button href="#" type="button" class="btn btn-indigo btn-lg btn-block mb-3" style="background:#75c9e6;">Go
+        to submit exam</button>
+</a>
+{% endblock content %}

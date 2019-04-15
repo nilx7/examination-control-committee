@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block pageName %}Examination Control Member Functions{% endblock pageName %}
+
+{% block content %}
+
+
+<div class="col-sm-3 col-md-3 col-lg-3">
+    <div class="box">
+        <div class="aligncenter">
+                <a href="{% url 'DailyReport' %}" style="text-decoration:none;">
+            <div class="icon">
+                <!-- <i class="fa fa-file-text fa-5x"></i> -->
+                <img src="{% static 'img/works/report.jpg' %}" alt="">
+            </div>
+            <h4>Daily Report</h4>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-3 col-md-3 col-lg-3">
+        <div class="box">
+            <div class="aligncenter">
+                    <a href="{% url 'ExamSubmission' %}" style="text-decoration:none;">
+                <div class="icon">
+                    <!-- <i class="fa fa-file-text fa-5x"></i> -->
+                    <img src="{% static 'img/works/submission.jpg' %}" alt="">
+                </div>
+                <h4>Exam Submission</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="box">
+                <div class="aligncenter">
+                        <a href="{% url 'DeliverExams' %}" style="text-decoration:none;">
+                    <div class="icon">
+                        <!-- <i class="fa fa-file-text fa-5x"></i> -->
+                        <img src="{% static 'img/works/deliver.jpg' %}" alt="">
+                    </div>
+                    <h4>Deliver Exams</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+<div class="col-sm-3 col-md-3 col-lg-3">
+<div class="box">
+    <div class="aligncenter">
+            <a href="{% url 'InvigilatorSchedules' %}" style="text-decoration:none;">
+        <div class="icon">
+        <!-- <i class="fa fa-file-text-o fa-5x"></i> -->
+        <img src="{% static 'img/works/schedule.jpg' %}" alt="">
+        </div>
+        <h4>Invigilator Schedules</h4>
+    </a>
+    </div>
+</div>
+</div>
+<div class="col-sm-3 col-md-3 col-lg-3">
+    <div class="box">
+        <div class="aligncenter">
+            <a href="{% url 'InvigilatorSwitch' %}" style="text-decoration:none;">
+                <div class="icon">
+                    <img src="{% static 'img/works/switch.jpg' %}" alt="">
+                </div>
+                <h4>Invigilator Switch</h4>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-sm-3 col-md-3 col-lg-3">
+    <div class="box">
+        <div class="aligncenter">
+            <a href="{% url 'reportsProblem' %}" style="text-decoration:none;">
+                <div class="icon">
+                    <img src="{% static 'img/works/reports.jpg' %}" alt="">
+                </div>
+                <h4>Invigilator Reports</h4>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+

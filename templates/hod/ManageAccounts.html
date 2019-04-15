@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block pageName %}Manage Accounts{% endblock pageName %}
+
+{% block style %}{% endblock style %}
+
+
+{% block content %}
+<div class="col-sm-8">
+    <p>
+        <button href="{% url 'AddAccount' %}" data-target="#addAccountModal" type="button" class="btn btn-success"
+            data-toggle="modal">Add Account</button>
+    </p>
+</div>
+<form method='GET'>
+    <div class="col-sm-4">
+        <div class="search-box">
+            <i class="material-icons">&#xE8B6;</i>
+            <input type="number" name="Ins_Search" class="form-control" placeholder="Search by Employee ID"
+                autocomplete="off">
+        </div>
+    </div>
+</form>
+
+{% if accounts.paginator.count > 0 %}
+
+<div id="printableArea" class="agenda">
+    <div class="table-responsive">
+        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for account in accounts %}
+                <tr>
+                    <td class="text-center">{{ account.Ins_ID.pk }}</td>
+                    <td>{{ account.Ins_ID }} </td>
+                    <td class="text-center">
+                        {% for number in account.Ins_ID.inst_phone_set.all %}
+                        {{ number.Phone_number }}
+
+                        {% if account.Ins_ID.inst_phone_set.count > 1 %}
+                        <hr style="margin-top: 5px;margin-bottom: 5px;border-top: 1px dotted #999999 !important;" />
+                        {% endif %}
+
+                        {% empty %}
+                        None
+                        {% endfor %}
+                    </td>
+                    <td>{{ account.Ins_ID.Email }}</td>
+
+                    {% comment %} <td class="text-center">
+                        <a href="{% url 'EditAccount' account.pk %}" data-target="#editAccountModal{{ account.pk }}"
+                         data-toggle="modal"><i class="material-icons orange" data-toggle="tooltip" title="Edit">settings</i></a>
+                    </td> {% endcomment %}
+
+
+                    <td class="text-center">
+                        <a href="{% url 'DeleteAccount' account.pk %}" data-target="#deleteAccountModal{{ account.pk }}"
+                         data-toggle="modal"><i class="material-icons red" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+
+                    </td>
+
+                </tr>
+{% comment %} 
+                <!-- Edit Modal HTML -->
+                <div id="editAccountModal{{ account.pk }}" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+                <!-- Delete Modal HTML -->
+                <div id="deleteAccountModal{{ account.pk }}" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<nav>
+    <ul class="pagination justify-content-end">
+        {% if accounts.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ accounts.previous_page_number }}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Previous</a>
+        </li>
+        {% endif %}
+        {% for num in accounts.paginator.page_range %}
+        {% if accounts.number == num %}
+        <li class="page-item disabled"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+        {% endfor %}
+        <li class="page-item">
+            {% if accounts.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ accounts.next_page_number }}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% else %}
+<div class="col-lg-12">
+    <div class="text-center">
+        <h3><span class="highlight">Not Found !</span></h3>
+    </div>
+</div>
+
+{% endif %}
+<!-- Add Modal HTML -->
+<div id="addAccountModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<a href="{% url 'ManageMembers' %}" style="color:white;text-decoration:none;">
+    <button href="#" type="button" class="btn btn-indigo btn-lg btn-block mb-3" style="background:#75c9e6;">Go
+        to manage members</button>
+</a>
+{% endblock content %}

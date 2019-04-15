@@ -1,0 +1,32 @@
+{% if not submitted.S_Status %}
+<form action="{% url 'RemoveSubmission' submitted.pk %}" method="post">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Undo Submission</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to remove submission for exam (
+            <b>{{ submitted.ID.CCourse.CoName }}</b>
+            ) ?</p>
+        <p class="text-warning"><small>This action can be undone by submitting exam again.</small></p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-info" value="Confirm">
+    </div>
+</form>
+{% else %}
+
+    <div class="modal-header">
+        <h4 class="modal-title">You can not remove submission</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p>The exam papers were received by the ECC member.</p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+    </div>
+
+{% endif %}

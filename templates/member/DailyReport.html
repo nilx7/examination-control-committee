@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block pageName %}Daily Report{% endblock pageName %}
+
+{% block style %}
+
+@keyframes check {0% {height: 0;width: 0;}
+25% {height: 0;width: 10px;}
+50% {height: 20px;width: 10px;}
+}
+.checkbox{background-color:#fff;display:inline-block;height:28px;margin:0 .25em;width:28px;border-radius:4px;border:1px
+solid #ccc;float:right}
+.checkbox span{display:block;height:28px;position:relative;width:28px;padding:0}
+.checkbox span:after{-moz-transform:scaleX(-1) rotate(135deg);-ms-transform:scaleX(-1)
+rotate(135deg);-webkit-transform:scaleX(-1) rotate(135deg);transform:scaleX(-1)
+rotate(135deg);-moz-transform-origin:left top;-ms-transform-origin:left top;-webkit-transform-origin:left
+top;transform-origin:left top;border-right:4px solid #fff;border-top:4px solid
+#fff;content:'';display:block;height:20px;left:3px;position:absolute;top:15px;width:10px}
+.checkbox span:hover:after{border-color:#999}
+.checkbox input{display:none}
+.checkbox input:checked + span:after{-webkit-animation:check .8s;-moz-animation:check .8s;-o-animation:check
+.8s;animation:check .8s;border-color:#555}
+.checkbox input:checked + .default:after{border-color:#444}
+.checkbox input:checked + .primary:after{border-color:#2196F3}
+.checkbox input:checked + .success:after{border-color:#8bc34a}
+.checkbox input:checked + .info:after{border-color:#3de0f5}
+.checkbox input:checked + .warning:after{border-color:#FFC107}
+.checkbox input:checked + .danger:after{border-color:#f44336}
+
+{% endblock style %}
+
+{% block content %}
+
+
+<form role="form" method="post">
+  <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    <div class="form-group">
+      {% csrf_token %}
+
+      {{ form.Notes|as_crispy_field }}
+
+      <label for="id_Absents" class="form-control-label ">
+        Absents
+      </label>
+      <ul class="list-group list-group-flush">
+        {% for checkbox in form.Absents %}
+        <li class="list-group-item">
+          {{ checkbox.choice_label }}
+          <label class="checkbox">
+            {{ checkbox.tag }}
+            <span class="success"></span>
+          </label>
+        </li>
+        {% endfor %}
+      </ul>
+
+      {{ form.AbsentsNotes|as_crispy_field }}
+
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6"><input type="submit" value="Generate Form"
+          class="btn btn-primary btn-block btn-lg" tabindex="7">
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock content %}

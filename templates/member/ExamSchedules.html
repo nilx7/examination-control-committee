@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block pageName %}Exam Schedules{% endblock pageName %}
+
+{% block content %}
+<a href="{% url 'InvigilatorSchedules' %}" style="color:white;text-decoration:none;">
+  <button href="#" type="button" class="btn btn-indigo btn-lg btn-block mb-3" style="background:#75c9e6;">Back to
+    Invigilator Schedules</button>
+</a>
+<br />
+{% if exams.count > 0 %}
+
+<div id="printableArea" class="agenda">
+  <div class="table-responsive">
+
+    <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Date</th>
+          <th>Period</th>
+          <th>Invigilator</th>
+          <th>Department</th>
+          <th>No. of students</th>
+          <th>Exam in</th>
+          <th>Instractor of the course</th>
+          <th>Section</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        {% for exam in exams %}
+        <tr>
+          <td>{{ exam.section_set.first.CCourse.CoName }}</td>
+          <td>{{ exam.Date|date:"SHORT_DATE_FORMAT" }}</td>
+          <td>{{ exam.get_Period_display }}</td>
+          <td>
+          {% for invigilator in exam.control_set.all %}
+          
+          {{ invigilator.Ins_ID|linebreaks}}
+          {% endfor %}</td>
+          <td>{{ exam.section_set.first.CCourse.Dcode }}</td>
+          <td>
+          {% for section in exam.section_set.all %}
+                <small>{{ section.Name }}</small>: {{ section.takes_set.count }}<br />
+          {% endfor %}
+          </td>
+
+          <td>
+            <small>Building: </small>{{ exam.has_set.first.Room.BLDG|linebreaks }}
+            <small>Room: </small>{{ exam.has_set.first.Room.Room|linebreaks }}
+          </td>
+          <td>
+          {% for section in exam.section_set.all %}
+              <small>{{ section.Name }}: {{ section.Ins_ID }}</small><br />
+          {% endfor %}
+          </td>
+          <td>
+            {% for section in exam.section_set.all %}
+
+            {{ section.Name }}<br />
+            {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+        {% comment %} {% for section in sections %}
+        <tr>
+          <td>{{ section.CCourse.CoName }}</td>
+          <td>{{ section.E_ID.Date }}</td>
+          <td>{{ section.E_ID.get_Period_display }}</td>
+          <td>
+            {% if section.E_ID.control_set.all.count > 0 %}
+
+            {% for invigilator in section.E_ID.control_set.all %}
+            {% if invigilator.Role == 'invigilator' %}
+            {% if section.E_ID.control_set.all.count > 1 %}
+            {{ invigilator.Ins_ID }}
+            <hr style="margin-top: 5px;margin-bottom: 5px;border-top: 1px dotted #999999 !important;" />
+            {% elif section.E_ID.control_set.all.count > 0 %}
+            {{ invigilator.Ins_ID }}
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            None
+            {% endif %}
+          </td>
+          <td>{{ section.CCourse.Dcode }}</td>
+          <td class="text-center">{{ section.takes_set.count }}</td>
+          <td>
+            <small>Building: </small>{{ section.E_ID.has_set.first.Room.BLDG|linebreaks }}
+            <small>Room: </small>{{ section.E_ID.has_set.first.Room.Room|linebreaks }}
+          </td>
+          <td>{{ section.Ins_ID }}</td>
+          <td class="text-center">{{ section.Name }}</td>
+        </tr>
+        {% endfor %} {% endcomment %}
+
+      </tbody>
+    </table>
+  </div>
+</div>
+<button type="button" onclick="printDiv('printableArea')" class="btn btn-info fas fa-print"></button>
+{% endif %}
+
+
+{% endblock content %}

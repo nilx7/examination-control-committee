@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block pageName %}Sign In{% endblock pageName %}
+
+{% block content %}
+<form role="form" class="register-form" method="post">
+  <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.employeeID|as_crispy_field }}
+    </div>
+
+    <div class="form-group">
+      {{ form.password|as_crispy_field }}
+    </div>
+
+
+							<div class="row">
+								<div class="col-xs-12 col-md-6"><input type="submit" value="Sign in" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+								<div class="col-xs-12 col-md-6">Don't have an account? Please contact your head of department.</div>
+							</div>
+
+    </div>
+</form>
+
+{% endblock content %}

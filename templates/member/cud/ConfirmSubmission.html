@@ -1,0 +1,17 @@
+<form action="{% url 'ConfirmSubmission' submission.pk %}" method="post">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Confirm Submission</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to confirm submission for exam (
+            <b>{{ submission.ID.CCourse.CoName }}</b>
+            ) ?</p>
+        <p class="text-warning"><small>This action can be undone from deliver exams page.</small></p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-info" value="Confirm">
+    </div>
+</form>

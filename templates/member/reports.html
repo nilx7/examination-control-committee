@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block pageName %}Reports Page{% endblock pageName %}
+
+{% block style %}{% endblock style %}
+
+
+{% block content %}
+
+<div class="agenda">
+    <div class="table-responsive">
+        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+
+                    <th>Type</th>
+                    <th>Course name </th>
+                    <th>Exam Date and Period</th>
+                    <th>Invigliator</th>
+                    <th>Describtion</th>
+                    <th>print</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for problem in problems %}
+                <tr>
+
+                    <td>{{ problem.get_Type_display }}</td>
+                    <td>{{ problem.E_ID.section_set.first.CCourse.CoName }}</td>
+                    {% comment %} <td>{{ problem.E_ID.Date }} || {{ problem.E_ID.get_Period_display }} </td>
+                    {% endcomment %}
+                    <td>
+                        <small>
+                            {{ problem.E_ID.Date|linebreaks }}
+                            {{ problem.E_ID.get_Period_display|linebreaks }}
+                        </small>
+                    </td>
+                    <td>{{ problem.Ins_ID }}</td>
+                    <td>{{ problem.Describtion }}</td>
+
+
+                    {% if problem.Type == 'Cheating' %}
+                    <td>
+
+                        <a href="{% url 'cheatingReport' problem.id %}">
+                            <button href="#" type="button" class="btn btn-info fas fa-print"></button>
+                        </a>
+                    </td>
+
+
+                    {% elif problem.Type == 'phone' %}
+                    <td>
+
+                        <a href="{% url 'phoneReport' problem.id %}">
+                            <button href="#" type="button" class="btn btn-info fas fa-print"></button>
+                        </a>
+
+                    </td>
+
+                    {% elif problem.Type == 'forgitId' %}
+                    <td>
+                        <a href="{% url 'forgitIdReport' problem.id %}">
+                            <button href="#" type="button" class="btn btn-info fas fa-print"></button>
+                        </a>
+
+
+                    </td>
+                    {% endif %}
+
+
+
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<a href="{% url 'MemberHome' %}" style="color:dimgray;text-decoration:none;">
+    <button href="#" type="button" class="btn btn-indigo btn-lg btn-block mb-3">Go to Home page</button>
+</a>
+
+{% endblock content %}

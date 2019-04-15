@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block pageName %}Reports Page{% endblock pageName %}
+
+{% block style %}{% endblock style %}
+
+
+{% block content %}
+{% if exams.count > 0 %}
+<div class="agenda">
+    <div class="table-responsive">
+
+        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Exam Date</th>
+                    <th>Exam Period</th>
+                    <th>Sections</th>
+                    <th>Add Report</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for exam in exams %}
+                <tr>
+
+                    <td>{{ exam.section_set.first.CCourse.CoName}}</td>
+                    <td>{{ exam.Date |date:"SHORT_DATE_FORMAT" }}</td>
+                    <td>{{ exam.get_Period_display }}</td>
+                    <td>
+                        {% for section in exam.section_set.all %}
+                        {{ section.Name }}<br />
+                        {% endfor %}
+                    </td>
+                    <td class="text-center">
+                        <a href="{% url 'AddReport' exam.E_ID %}" data-target="#addReportModal{{ exam.E_ID }}"
+                            type="button" class="edit" data-toggle="modal"><i class="material-icons"
+                                title="Edit">note_add</i></a>
+                    </td>
+
+
+                </tr>
+                <!-- Add Modal HTML -->
+                <div id="addReportModal{{ exam.E_ID }}" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+{% else %}
+<div class="col-lg-12">
+    <div class="text-center">
+        <h3><span class="highlight">There are no exams to report</span></h3>
+    </div>
+</div>
+{% endif %}
+
+<a href="{% url 'InvigilatorHome' %}" style="color:dimgray;text-decoration:none;">
+    <button href="#" type="button" class="btn btn-indigo btn-lg btn-block mb-3">Back to Home page</button>
+</a>
+
+{% endblock content %}

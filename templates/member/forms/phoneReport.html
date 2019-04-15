@@ -1,0 +1,35 @@
+{% extends 'base_form.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Phone Report{% endblock title %}
+
+{% block content %}
+
+<h2 class="text-center" style=" margin-bottom: 100px"><Strong><u> اقرار و تعهد</u></Strong></h2>
+
+<p class="rtl">
+
+
+  أقر أنا الطالب {{problem.Std_ID.getName}}
+  الرقم الجامعي {{problem.Std_ID.Std_ID}} بأنني أتعهد
+  بعد أصطحاب الجوال الخاص بي داخل قاعات الاختبارات النهائية للفصل {{ problem.E_ID.section_set.first.Semester}} من العام
+  الجامعي
+  {{ problem.E_ID.section_set.first.year}} م و أتعهد بأنه إذا تكرر هذا التصرف مني مرة أخرى خلال فترة الإختبارات
+  فيحق للجنة الكنترول العام حرماني من دخول إختبار أي مقرر لاحقا
+  .
+</p>
+<p class="rtl"> وهذ إقرار مني بذلك
+  .
+</p>
+
+</br>
+</br>
+</br>
+
+<h4 class="text-right" style=" margin-bottom: 10px"><Strong>{{problem.Std_ID.getName}}: الإسم </Strong></h4>
+<h4 class="text-right" style=" margin-bottom: 10px"><Strong>: التوقيع </Strong></h4>
+<h4 class="text-right" style=" margin-bottom: 10px"><Strong>{{problem.E_ID.Date |date:"SHORT_DATE_FORMAT"}} : التاريخ
+  </Strong></h4>
+
+
+{% endblock content %}

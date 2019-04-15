@@ -1,0 +1,5 @@
+django==2.1.2
+django-crispy-forms==1.7.0
+django-import-export==1.2.0
+nexmo==2.3.0
+weasyprint==44

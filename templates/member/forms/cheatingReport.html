@@ -1,0 +1,184 @@
+{% extends 'base_form.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Cheating Report{% endblock title %}
+
+{% block content %}
+
+<h3 class="text-center" style=" margin-bottom: 50px"><Strong> اللجنة الدائمة لتأديب الطلابي </Strong></h3>
+
+
+<table class="tebelStyle" border=1>
+
+    <tr>
+        <td> {{ problem.Std_ID.Std_ID }} </td>
+        <td> الرقم الجامعي </td>
+        <td> {{ problem.Std_ID.getName }} </td>
+        <td> إسم الطالب </td>
+    </tr>
+
+    <tr>
+        <td> {{ problem.Std_ID.Dcode }} </td>
+        <td> القسم </td>
+        <td> {{ problem.Std_ID.Dcode.CCollege.Cname }} </td>
+        <td> الكلية </td>
+
+    </tr>
+
+    <tr>
+        <td> {{ problem.Std_ID.Dcode }} </td>
+        <td> التخصص </td>
+        <td> {{ problem.E_ID.section_set.first.CCourse }} </td>
+        <td> المادة </td>
+
+    </tr>
+
+</table>
+<h3 class="text-center" style="margin: 50px"><Strong> اللجنة الدائمة لتأديب الطلابي </Strong></h3>
+
+<p class="rtl">
+
+    إنه في اليوم {{problem.E_ID.Date |date:"l"}} بتاريخ {{problem.E_ID.Date |date:"SHORT_DATE_FORMAT"}} الساعة (
+    ________________ ) قاعة رقم ({{problem.E_ID.has_set.first.Room.Room}}) مبنى (
+    {{problem.E_ID.has_set.first.Room.BLDG}} ) قام سعادة/_______________
+
+    <div class="rtl">
+        <label><input type="radio" name="a"> عضو هيئة تدريس</label>
+        <label><input type="radio" name="a"> محاضر</label>
+        <label><input type="radio" name="a"> معيد</label>
+        <label><input type="radio" name="a"> موظف</label>
+    </div>
+
+
+    <div class="rtl">
+        بضبط الطالب المذكور اعلاه اثناء أدائه الامتحان /
+        <label><input type="radio" name="exam"> الدوري</label>
+        <label><input type="radio" name="exam"> النصفي</label>
+        <label><input type="radio" name="exam"> النهائي</label>
+        </br>
+    </div>
+
+
+    <div class="rtl">
+        بضبط الطالب المذكور اعلاه اثناء أدائه الامتحان /
+        <label><input type="radio" name="cheating"> متلبسا بالغش</label>
+        <label><input type="radio" name="cheating"> محاولات الغش</label>
+        وإداة الغش هي:_______________________
+        </br>
+    </div>
+    <div class="rtl">
+        وقد ضبطت معه في /
+        <label><input type="radio" name="cheating-a"> يده</label>
+        <label><input type="radio" name="cheating-a"> جيبه</label>
+        <label><input type="radio" name="cheating-a"> كراسة الإجابة</label>
+        </br>
+        في مكان اخر:_______________________
+        </br>
+    </div>
+
+    <div class="rtl">
+        وقد /
+        <label><input type="radio" name="indoor-outdoor"> اقر الطالب بصحة ما نسب إليه</label>
+        <label><input type="radio" name="indoor-outdoor"> أنكر الطالب بصحة ما نسب إليه</label>
+        </br>
+        وعليه جرى التوقيع,,,,,,,,,
+        </br>
+    </div>
+
+</p>
+</br>
+
+<table class="tebelStyle">
+
+
+    <tr>
+
+        <td> ............................. :اسم مشرف الصالة</td>
+        <td style=" padding-left: 30px"> ............................. :اسم الملاحظ </td>
+
+
+    </tr>
+
+    <tr>
+        <td class="text-left"> ............................. :التوقيع</td>
+        <td class="text-left" style=" padding-left: 30px"> ............................. :التوقيع</td>
+
+    </tr>
+
+</table>
+
+</br>
+</br>
+<table class="tebelStyle">
+
+    <tr style="padding-left: 30px">
+        <td>التاريخ</td>
+        <td>التوقيع</td>
+        <td>الاسم</td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+        <td> ............................. </td>
+        <td style="padding-left: 30px"> ............................. </td>
+        <td style="padding-left: 30px"> .............................</td>
+        <td style="padding-left: 30px"> الشاهد الأول </td>
+
+
+    </tr>
+
+    <tr>
+        <td> ............................. </td>
+        <td> ............................. </td>
+        <td> ............................. </td>
+        <td> الشاهد الثاني </td>
+
+    </tr>
+    </tbody>
+</table>
+<p class="rtl">
+    ملاحظات أخرى:
+    <br />
+    {{problem.Describtion}}
+    <br />
+    <br />
+    <br />
+</p>
+
+<h3 class="text-center" style=" margin-bottom: 50px"><Strong> اللجنة الدائمة لتأديب الطلابي </Strong></h3>
+
+<h5 class="text-center" style=" margin-bottom: 100px"><Strong> إجرارات إثبات غش </Strong></h5>
+
+<table border="2" class="tebelStyle">
+    <thead>
+        <tr>
+            <th colspan="2" style=" font-size: 30px;  text-align: center ">إقرار</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> __________________________ </td>
+            <td> بضرورة و سرعة مراجعة وكيل </td>
+
+        </tr>
+    </tbody>
+</table>
+</br>
+</br>
+</br>
+<p class="rtl">
+    أقر أنا الطالب {{problem.Std_ID.getName}} الرقم الجامعي ( {{problem.Std_ID.Std_ID}}) بعلمي بضرورة وسرعة مراجعة سعادة
+    وكيل _______________ يوم
+    بتاريخ ___/ __/___ في تمام الساعة ___________ لإكمال إجاراءات المعاملة الخاصة بي، وفي حالة تأخري عن الموعد يسقط حقي
+    في سماع أقوالي و للجنة
+    التحقيق اتخاذ ما تراه مناسبا بشأن قضيتي وعليه جرى التوقيع.
+
+</p>
+</br>
+
+<h2 class="text-right" style=" margin-bottom: 10px"><Strong> {{problem.Std_ID.getName}}: الإسم </Strong></h2>
+<h2 class="text-right" style=" margin-bottom: 10px"><Strong> : التوقيع </Strong></h2>
+<h2 class="text-right" style=" margin-bottom: 10px"><Strong> {{problem.E_ID.Date |date:"SHORT_DATE_FORMAT"}} : التاريخ
+    </Strong>
+    {% endblock content %}

@@ -1,0 +1,19 @@
+{% load crispy_forms_tags %}
+
+<form action="{% url 'AddAccount' %}" method="post">
+        {% csrf_token %}
+        <div class="modal-header">
+            <h4 class="modal-title">Add Account</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                    {{ form.instructor|as_crispy_field }}
+                    {{ form.password|as_crispy_field }}
+        </div>
+        </div>
+        <div class="modal-footer">
+            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+            <input type="submit" class="btn btn-info" value="Save">
+        </div>
+    </form>

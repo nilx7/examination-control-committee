@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block pageName %}Exam Submission{% endblock pageName %}
+
+{% block style %}{% endblock style %}
+
+
+{% block content %}
+
+{% if submissions.paginator.count > 0 %}
+<div class="agenda">
+  <div class="table-responsive">
+    <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Instructor Name</th>
+          <th>Exam</th>
+          <th>Confirm Submission</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for submission in submissions %}
+        <tr>
+          <td>{{ submission.Ins_ID }}</td>
+          <td>
+            <small>Course Name: </small>{{ submission.ID.CCourse.CoName|linebreaks }}
+            <small>Date: </small> {{ submission.ID.E_ID.Date|linebreaks }}
+          </td>
+          <td class="text-center">
+            <a href="{% url 'ConfirmSubmission' submission.pk %}"
+              data-target="#ConfirmSubmissionModal{{ submission.pk }}" class="edit" data-toggle="modal"><i
+                class="material-icons" title="Edit">check_circle</i></a>
+          </td>
+        </tr>
+
+        <!-- Edit Modal HTML -->
+        <div id="ConfirmSubmissionModal{{ submission.pk }}" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<nav>
+  <ul class="pagination justify-content-end">
+    {% if submissions.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ submissions.previous_page_number }}">Previous</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="#">Previous</a>
+    </li>
+    {% endif %}
+    {% for num in submissions.paginator.page_range %}
+    {% if submissions.number == num %}
+    <li class="page-item disabled"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+    {% else %}
+    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+    {% endif %}
+    {% endfor %}
+    <li class="page-item">
+      {% if submissions.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ submissions.next_page_number }}">Next</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="#">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+{% else %}
+<div class="col-lg-12">
+  <div class="text-center">
+    <h3><span class="highlight">There are no exams to confirm submission</span></h3>
+  </div>
+</div>
+
+{% endif %}
+<a href="{% url 'DeliverExams' %}" style="color:white;text-decoration:none;">
+  <button href="#" type="button" class="btn btn-indigo btn-lg btn-block mb-3" style="background:#75c9e6;">Go to
+    deliver exams</button>
+</a>
+
+{% endblock content %}

@@ -1,0 +1,381 @@
+{% extends 'base_form.html' %}
+
+{% block content %}
+
+<TABLE WIDTH="100%" CELLPADDING=1 CELLSPACING=0>
+
+    <TR VALIGN=TOP>
+
+        <TD WIDTH=83 HEIGHT=52
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ section.Name }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD WIDTH=80
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.08in; margin-right: 0.1in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">الشعبة</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.1in; margin-right: 0.08in; margin-top: 0.01in">
+                <center><B style="font-size: 9pt">Section</B></center>
+            </P>
+        </TD>
+
+        <TD WIDTH=103
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ section.CCourse.CoCourse }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD WIDTH=133
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.12in; margin-right: 0.15in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">رمز المقرر</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.15in; margin-right: 0.13in; margin-top: 0.01in">
+                <center><B style="font-size: 9pt">Course Code</B></center>
+            </P>
+        </TD>
+
+        <TD COLSPAN=4 WIDTH=354
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ section.CCourse.CoName }}</B></center>
+
+            </P>
+
+        </TD>
+
+
+
+
+        <TD WIDTH=206
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.32in; margin-right: 0.35in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">إسم المقرر</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.35in; margin-right: 0.33in; margin-top: 0.01in">
+                <center><B style="font-size: 9pt">Course Name</B></center>
+            </P>
+        </TD>
+
+    </TR>
+
+    <TR VALIGN=TOP>
+
+        <TD COLSPAN=2 WIDTH=165 HEIGHT=54
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ section.Ins_ID.inst_phone_set.first.Phone_number }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD COLSPAN=2 WIDTH=238
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.37in; margin-right: 0.4in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">رقم الجوال</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.4in; margin-right: 0.37in; margin-top: 0.01in">
+                <center><B style="font-size: 9pt">Mobile Number</B></center>
+            </P>
+        </TD>
+
+        <TD COLSPAN=4 WIDTH=354
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ section.Ins_ID }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD WIDTH=206
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.33in; margin-right: 0.35in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">أستاذ المقرر</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.35in; margin-right: 0.33in; margin-top: 0.01in">
+                <center><B style="font-size: 9pt">Course Instructor</B></center>
+            </P>
+        </TD>
+
+    </TR>
+
+    <TR VALIGN=TOP>
+
+        <TD COLSPAN=2 WIDTH=165 HEIGHT=54
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ section.E_ID.get_Period_display }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD COLSPAN=2 WIDTH=238
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.37in; margin-right: 0.39in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">الفترة</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.4in; margin-right: 0.37in; margin-top: 0in">
+                <center><B style="font-size: 9pt">Exam Time Interval</B></center>
+            </P>
+        </TD>
+
+        <TD COLSPAN=4 WIDTH=354
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ section.E_ID.Date }} - {{ section.E_ID.Date|date:'l' }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD WIDTH=206
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.33in; margin-right: 0.35in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">اليوم والتاريخ</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.35in; margin-right: 0.33in; margin-top: 0in">
+                <center><B style="font-size: 9pt">Day and Date</B></center>
+            </P>
+        </TD>
+
+    </TR>
+
+    <TR VALIGN=TOP>
+
+        <TD COLSPAN=2 WIDTH=165 HEIGHT=54
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ section.E_ID.has_set.first.Room.Room }}</B></center>
+
+            </P>
+
+        </TD>
+
+        <TD COLSPAN=2 WIDTH=238
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.37in; margin-right: 0.4in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">قاعة الاختبار</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.4in; margin-right: 0.37in; margin-top: 0in">
+                <center><B style="font-size: 9pt">Examination Room</B></center>
+            </P>
+        </TD>
+
+        <TD WIDTH=68
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ noOfPapers }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD COLSPAN=2 WIDTH=214
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.25in; margin-right: 0.27in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">عدد الاوراق لكل نموذج</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.27in; margin-right: 0.25in; margin-top: 0in">
+                <center><B style="font-size: 9pt">No. of copies/Model</B></center>
+            </P>
+        </TD>
+
+        <TD WIDTH=68
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ noModels }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD WIDTH=206
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.33in; margin-right: 0.35in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">عدد النماذج</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.35in; margin-right: 0.33in; margin-top: 0in">
+                <center><B style="font-size: 9pt">No. of Models</B></center>
+            </P>
+        </TD>
+
+    </TR>
+
+    <TR VALIGN=TOP>
+
+        <TD WIDTH=83 HEIGHT=76
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.11in; margin-right: 0.14in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">عادي</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.14in; margin-right: 0.11in; margin-top: 0in">
+                <center><B style="font-size: 9pt">Manual</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.03in; margin-top: 0in"><input type="checkbox"></P>
+        </TD>
+
+        <TD WIDTH=80
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.07in; margin-right: 0.1in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">آلي</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.1in; margin-right: 0.08in; margin-top: 0in">
+                <center><B style="font-size: 9pt">Auto</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.02in; margin-top: 0in"><input type="checkbox"></P>
+        </TD>
+
+        <TD COLSPAN=2 WIDTH=238
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.37in; margin-right: 0.4in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">نوع التصحيح</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.39in; margin-right: 0.37in; margin-top: 0.01in">
+                <center><B style="font-size: 9pt">Type of Marking</B></center>
+            </P>
+        </TD>
+
+        <TD COLSPAN=4 WIDTH=354
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ section.takes_set.count }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD WIDTH=206
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.33in; margin-right: 0.35in; margin-top: 0.12in">
+                <center><B style="font-size: 10pt">عدد الطلاب</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.35in; margin-right: 0.33in; margin-top: 0.01in">
+                <center><B style="font-size: 9pt">No. of Students</B></center>
+            </P>
+        </TD>
+
+    </TR>
+
+    <TR VALIGN=TOP>
+
+        <TD COLSPAN=2 WIDTH=165 HEIGHT=137
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ noOfDN }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD COLSPAN=2 WIDTH=238
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+
+            <P ALIGN=RIGHT STYLE="margin-left: 0.03in; margin-right: 0.1in;">
+                <center><B style="font-size: 10pt">عدد الطلاب المحرومين من الاختبار </B></center>
+                <center><B style="font-size: 10pt">إن وجد</B></center>
+            </P>
+
+            <P ALIGN=LEFT STYLE="margin-left: 0.07in; margin-right: 0.03in">
+                <center><B style="font-size: 9pt">Students who are not allowed to sit their examinations (if any)</B>
+                </center>
+            </P>
+        </TD>
+
+        <TD ROWSPAN=2 COLSPAN=2 WIDTH=156
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=LEFT STYLE="margin-left: 0.07in; margin-right: 0.1in; text-indent: 0.3in; margin-top: 0.16in">
+                <center><B style="font-size: 10pt">بعض الانواع فقط</B></center>
+                <br />
+                <center><B style="font-size: 9pt">Only some are permitted (Please Specify)</B></center>
+                <P ALIGN=center><BR>
+
+                    <center><B>{{ typesOfCalc }}</B></center>
+
+                </P>
+            </P>
+        </TD>
+
+        <TD ROWSPAN=2 WIDTH=126
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+
+            <P ALIGN=JUSTIFY STYLE="margin-left: 0.08in; margin-right: 0.22in; text-indent: 0.19in; margin-top: 0.19in">
+                <center><B style="font-size: 10pt">نعم بكل أنواعها</B></center>
+                <br />
+                <center><B style="font-size: 9pt">All types are permitted</B></center>
+            </P>
+
+            <P ALIGN=LEFT><BR>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.02in; margin-top: 0.2in"><input type="checkbox"></P>
+        </TD>
+
+        <TD ROWSPAN=2 WIDTH=68
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+
+            <P ALIGN=CENTER STYLE="margin-right: 0.02in; margin-top: 0.19in">
+                <center><B style="font-size: 10pt">لا</B></center>
+            </P>
+
+            <P ALIGN=CENTER STYLE="margin-left: 0.22in; margin-right: 0.2in; margin-top: 0in">
+                <center><B style="font-size: 9pt">No</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="  margin-top: 0.8in;"><input type="checkbox"></P>
+        </TD>
+
+        <TD ROWSPAN=2 WIDTH=206
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=LEFT><BR>
+            </P>
+            <P ALIGN=LEFT STYLE="margin-top: 0.01in"><BR>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.35in; margin-right: 0.33in">
+
+                <center><B style="font-size: 10pt">هل الآلة الحاسبة </B>
+                    <B style="font-size: 10pt">مسموحة؟</B>
+                    <center>
+                        <br />
+                        <center><B style="font-size: 9pt">Is the calculator allowed?</B>
+                            <center>
+            </P>
+        </TD>
+
+    </TR>
+
+    <TR VALIGN=TOP>
+
+        <TD COLSPAN=2 WIDTH=165 HEIGHT=80
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=center><BR>
+
+                <center><B>{{ notes }}</B></center>
+
+            </P>
+        </TD>
+
+        <TD COLSPAN=2 WIDTH=238
+            STYLE="border: 1pt solid #000001; padding-top: 0in; padding-bottom: 0in; padding-left: 0.01in; padding-right: 0in">
+            <P ALIGN=CENTER STYLE="margin-left: 0.37in; margin-right: 0.4in; margin-top: 0.15in">
+                <center><B style="font-size: 10pt">بيانات إضافية</B></center>
+            </P>
+            <P ALIGN=CENTER STYLE="margin-left: 0.4in; margin-right: 0.37in; margin-top: 0.01in">
+                <center><B style="font-size: 9pt">Extra Notes</B></center>
+            </P>
+        </TD>
+    </TR>
+</TABLE>
+
+{% endblock content %}

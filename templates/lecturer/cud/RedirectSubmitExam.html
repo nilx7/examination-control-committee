@@ -1,0 +1,22 @@
+{% load crispy_forms_tags %}
+
+<form action="{% url 'RedirectSubmitExam' section.pk %}" method="post">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Required information</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+                {{ form.noModels|as_crispy_field | default:"2" }}
+                {{ form.noOfPapers|as_crispy_field | default:"30" }}
+                {{ form.typesOfCalc|as_crispy_field | default:"2" }}
+                {{ form.noOfDN|as_crispy_field | default:"0"}}
+                {{ form.notes|as_crispy_field }}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-info" value="Submit and Generate Form">
+    </div>
+</form>

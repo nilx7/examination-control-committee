@@ -1,0 +1,89 @@
+{% load staticfiles %}
+
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock title %}</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+
+	<style type="text/css">
+		.main {
+			font-size: 16px;
+			font: bold;
+		}
+
+		.main2 {
+			font-size: 17px;
+			font: bold;
+			text-align: center;
+		}
+
+		.detail {
+			font-size: 13px;
+			font: bold;
+		}
+
+		.rtl {
+			text-align: right;
+			direction: rtl;
+			font-size: 23px;
+		}
+		
+		.tebelStyle {
+		
+			margin: 15px auto;
+		
+		}
+		table.tebelStyle tr td {
+			text-align: center;
+	
+			padding:10px;
+			font-size: 25px; 
+		}
+		
+	</style>
+
+<body>
+	<nav class="navbar navbar-dark bg-dark">
+		<a class="navbar-brand">
+			<button class="btn btn-outline-success my-2 my-sm-0" onclick="window.print();" type="submit">Print</button>
+		</a>
+		<a href="{% url 'main' %}">
+			<button class="btn btn-outline-success my-2 my-sm-0">Back to site</button>
+		</a>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="text-left">
+				<p dir="ltr" style="font-size: 14px;">
+					KINGDOM OF SAUDI ARABIA <br />
+					MINISTRY OF EDUCATION<br>
+					TAIBAH UNIVERSITY
+				</p>
+			</div>
+			<img style="margin-left: auto; margin-right: auto;" src="https://lomrlo.me/Logo.gif">
+			<div class="text-right">
+				<p dir="rtl">
+					المملكة العربية السعودية <br />
+					وزارة التعليم <br>
+					جامعة طيبة<br>
+				</p>
+			</div>
+		</div>
+		<hr />
+	</div>
+	<div class="container">
+		{% block content %}
+		{% endblock content %}
+	</div>
+
+
+</body>
+
+</html>
