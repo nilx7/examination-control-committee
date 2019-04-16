@@ -36,9 +36,9 @@ The project will be available at **127.0.0.1:8000**.
 
 Thanks goes to these wonderful people:
 
-Naif Alsubhi ([Github](https://github.com/Nayfde)).
+Naif Alsubhi - ([Github](https://github.com/Nayfde)).
 
-Khaled Almutairi
+Khaled Almutairi - ([Github](https://github.com/KLD96)).
 
 
 
