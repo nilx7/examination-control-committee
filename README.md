@@ -31,6 +31,20 @@ python manage.py runserver
 
 The project will be available at **127.0.0.1:8000**.
 
+
+## Contributors ✨
+
+Thanks goes to these wonderful people:
+
+```bash
+Naif Alsubhi https://github.com/Nayfde
+```
+
+```bash
+Khaled Almutairi
+```
+
+
 ## License
 
 The source code is released under the [MIT License](https://github.com/0xlomrlo/Examination-Control-Committee/blob/master/LICENSE).
