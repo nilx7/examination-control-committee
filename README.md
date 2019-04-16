@@ -36,13 +36,10 @@ The project will be available at **127.0.0.1:8000**.
 
 Thanks goes to these wonderful people:
 
-```bash
-Naif Alsubhi https://github.com/Nayfde
-```
+Naif Alsubhi ([Github] (https://github.com/Nayfde))
 
-```bash
 Khaled Almutairi
-```
+
 
 
 ## License
