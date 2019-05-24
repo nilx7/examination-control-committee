@@ -1,5 +1,5 @@
 <p align="center">
-![Logo](logo.jpg)
+﻿<img src="logo.jpg"><br />
 </p>
 
 
