@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://lomrlo.me/up/ecc-a.jpg">
+![Logo](logo.jpg)
 </p>
 
 
